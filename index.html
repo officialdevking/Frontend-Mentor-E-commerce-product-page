@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frontend Mentor | E-commerce product page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&family=Maven+Pro:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+</html>
+
+<body>
+    <header>
+        <ul class="menu">
+            <li class="hamburger"><img src="/images/icon-menu.svg" alt="#"></li>
+            <li><img src="/images/logo.svg" alt="#"></li>
+            <li data-tab-target="#collections">Collections</li>
+            <li data-tab-target="#men">Men</li>
+            <li data-tab-target="#women" class="active">Women</li>
+            <li data-tab-target="#about">About</li>
+            <li data-tab-target="#contact">Contact</li>
+        </ul>
+
+        <div class="cart">
+            <div class="cart_item">
+                <div class="basket">
+                    <img src="/images/icon-cart.svg" alt="#" class="cart_img cartIcon">
+                    <input type="text" class="number_of_items_in_cart" value="0">
+                </div>
+                <div class="addedCartItem displayNone">
+                    <div class="cartHeader">
+                        <h4>Cart</h4>
+                    </div>
+                    <div class="cartItemBody">
+                        
+                    </div>
+                    <button class="checkoutBtn">Checkout</button>
+                </div>
+            </div>
+            <div class="avatar_item"><img src="/images/image-avatar.png" alt="#" class="avatar cart_img"></div>
+        </div>
+    </header>
+
+    <div class="mobile displayNone">
+        <div class="mobile-backdrop"></div>
+        <div class="mobileContent animate__animated animate__fadeInLeft">
+            <ul class="mobile_menu">
+                <li class="close"><img src="/images/icon-close.svg" alt="#"></li>
+                <li data-tab-target="#collections">Collections</li>
+                <li data-tab-target="#men">Men</li>
+                <li data-tab-target="#women" class="active">Women</li>
+                <li data-tab-target="#about">About</li>
+                <li data-tab-target="#contact">Contact</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="modal displayNone">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content">
+            <!-- <div class="main_carousel "> -->
+                <div class="carousel">
+                    <div class="carousel_item carousel_item_visible">
+                        <img src="/images/image-product-1.jpg" alt="#" class="display"> 
+                    </div>
+                    <div class="carousel_item">
+                        <img src="/images/image-product-2.jpg" alt="#" class="display">
+                    </div>
+                    <div class="carousel_item">
+                        <img src="/images/image-product-3.jpg" alt="#" class="display">
+                    </div>
+                    <div class="carousel_item">
+                        <img src="/images/image-product-4.jpg" alt="#" class="display">
+                    </div>
+            
+                    <div class="carousel_actions">
+                        <button id="carousel_button_prev" aria-label="previous slide"><img src="/images/icon-previous.svg" alt="#"></button>
+                        <button id="carousel_button_next" aria-label="previous slide"><img src="/images/icon-next.svg" alt="#"></button>
+                    </div>
+                </div>
+                <div class="thumbs1">
+                    <li class="thumbChange"><img src="/images/image-product-1-thumbnail.jpg" alt="#"></li>
+                    <li class="thumbChange"><img src="/images/image-product-2-thumbnail.jpg" alt="#"></li>
+                    <li class="thumbChange"><img src="/images/image-product-3-thumbnail.jpg" alt="#"></li>
+                    <li class="thumbChange"><img src="/images/image-product-4-thumbnail.jpg" alt="#"></li>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <div class="tab-content">
+            <div id="collections" data-tab-content>Collections</div>
+            <div id="men" data-tab-content>Men</div>
+            <div id="women" data-tab-content class="active">
+                <div class="products">
+                    <!-- display products -->
+                </div>
+
+                <div class="sneakers" id="linkSneaker">
+                        <!-- RENDER SELECTED PRODUCT -->
+                    <div class="backgroundColor"></div>
+                </div> -->
+
+                
+            </div>
+            <div id="about" data-tab-content>About</div>
+            <div id="contact" data-tab-content>Contact</div>
+        </div>
+
+    </main>
+
+    
+
+    <script src="./js/products.js"></script>
+    <script src="./js/apps.js"></script>
+</body>
+
+</html>
