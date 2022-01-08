@@ -52,11 +52,9 @@ function displayGoods() {
 displayGoods();
 
 // DISPLAY SELECTED ITEMS
-const data = JSON.parse(localStorage.getItem("CART"));
+let data = JSON.parse(localStorage.getItem("CART")) || [];
 
 let cartItems = {};
-
-let allCartItems = [];
 
 const storeSelectedProduct = (productIndex) => {
   cartItems = products[productIndex];
@@ -235,8 +233,8 @@ const storeSelectedProduct = (productIndex) => {
       });
     });
 
-    allCartItems.push(cartItems);
-    localStorage.setItem("CART", JSON.stringify(allCartItems));
+    data.push(cartItems);
+    localStorage.setItem("CART", JSON.stringify(data));
   });
 };
 
