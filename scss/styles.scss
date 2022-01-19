@@ -18,21 +18,22 @@ body {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #f1f1f1; 
+  background: #f1f1f1;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #888; 
+  background: #888;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #555; 
+  background: #555;
 }
 
 /* nav */
 header {
+  // position: sticky;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -46,12 +47,12 @@ header {
     display: flex;
     align-items: center;
 
-    .basket{
+    .basket {
       position: relative;
       cursor: pointer;
     }
 
-    .basket input{
+    .basket input {
       position: absolute;
       width: 20px;
       text-align: center;
@@ -322,15 +323,13 @@ main {
     max-height: 400px;
     overflow-y: scroll;
 
-
     .cartItemSub {
       display: flex;
       align-items: center;
       justify-content: space-between;
 
-      .delete{
-        cursor: pointer;
-        margin-right: 7px;
+      .cartItemText {
+        margin-right: 10px;
       }
     }
 
@@ -365,10 +364,28 @@ main {
     outline: 0;
     cursor: pointer;
   }
+  .clear {
+    text-align: center;
+    margin: 5px 0;
+    background-color: $orange;
+    // cursor: pointer;
+    padding: 5px 0;
+    border-radius: 7px;
+
+    a {
+      text-decoration: none;
+      color: $white;
+    }
+  }
 }
 
 .displayNone {
   display: none !important;
+}
+
+.displaydisabled{
+  cursor: not-allowed;
+  opacity: 0.5;
 }
 
 .modal {
@@ -602,7 +619,7 @@ main {
   .modal .modal-content .thumbs1 {
     width: 290px;
   }
-  .addedCartItem{
+  .addedCartItem {
     width: 300px;
     right: 10px;
   }

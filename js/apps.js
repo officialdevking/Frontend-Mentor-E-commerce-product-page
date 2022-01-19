@@ -56,9 +56,20 @@ let data = JSON.parse(localStorage.getItem("CART")) || [];
 
 let cartItems = {};
 
+let number_of_items_in_cart = document.querySelector(
+  ".number_of_items_in_cart"
+);
+
+let cartItem = document.querySelector(".cart_item").children[1].children[1];
+
+let i = 0;
+
+const linkSneaker = document.getElementById("linkSneaker")
+
 const storeSelectedProduct = (productIndex) => {
   cartItems = products[productIndex];
-  console.log(cartItems);
+
+  linkSneaker.scrollIntoView({behavior: "smooth"})
 
   // RENDER SELECTED ITEMS
   let sneaker = document.querySelector(".sneakers");
@@ -73,7 +84,6 @@ const storeSelectedProduct = (productIndex) => {
           <li onclick="thumbChange(2)"><img src="/images/image-product-2-thumbnail.jpg" alt="#"></li>
           <li onclick="thumbChange(3)"><img src="/images/image-product-3-thumbnail.jpg" alt="#"></li>
           <li onclick="thumbChange(4)"><img src="/images/image-product-4-thumbnail.jpg" alt="#"></li>
-
       </div>
   </div>
   <div class="sneaker_text">
@@ -93,8 +103,8 @@ const storeSelectedProduct = (productIndex) => {
       <div class="addToCart">
           <div class="increase">
               <img src="/images/icon-minus.svg" alt="#" class="minus">
-              <input type="text" class="num" value="0">
-              <img src="/images/icon-plus.svg" alt="#" class="plus">
+              <p class="num">${cartItems.count}</p>
+              <img src="/images/icon-plus.svg" alt="#" id="plus">
           </div>
           <button class="addToCartBtn"><img src="/images/icon-cart.svg" alt="#"> Add to
               cart</button>
@@ -103,32 +113,23 @@ const storeSelectedProduct = (productIndex) => {
   `;
 
   // increamenting value
-  const plus = document.querySelector(".plus");
+  const plus = document.querySelector("#plus");
   const minus = document.querySelector(".minus");
-  let text = document.querySelector(".num").value;
   let num = document.querySelector(".num");
 
-  console.log(num.value);
 
-  let i = 0;
-  plus.addEventListener("click", () => {
-    num.value = i++;
+  plus.addEventListener("click", (e) => {
+    cartItems.count++;
+    num.textContent = cartItems.count;
   });
   minus.addEventListener("click", () => {
-    if (i < 0) {
-      i = 0
-    }else{
-      num.value = i--;
+    if (cartItems.count === 1) {
+      alert("Item must be 1 or greater");
+    } else {
+      cartItems.count--;
+      num.textContent = cartItems.count;
     }
   });
-
-  // // OPACITY CLASS
-  // let thumbs = document.querySelectorAll(".thumbs li");
-  // Array.from(thumbs).forEach((thumb) => {
-  //   thumb.addEventListener("click", () => {
-  //     thumb.innerHTML += `<div class="cover"></div>`;
-  //   });
-  // });
 
   // CAROUSEL
   const mainImg = document.querySelector(".main_image");
@@ -196,13 +197,11 @@ const storeSelectedProduct = (productIndex) => {
   });
 
   // addToCart
-  let cartItem = document.querySelector(".cart_item").children[1].children[1];
   let addToCartBtn = document.querySelector(".addToCartBtn");
 
-  console.log(addToCartBtn);
 
   addToCartBtn.addEventListener("click", () => {
-    let total = cartItems.price * i;
+    cartItems.total = cartItems.price * cartItems.count;
     cartItem.innerHTML += `
     <div class="cartItemSub">
         <div class="cartItemImage">
@@ -210,33 +209,64 @@ const storeSelectedProduct = (productIndex) => {
         </div>
         <div class="cartItemText">
             <p>${cartItems.name}</p>
-            <p>$${cartItems.price} X ${i} <span class="total">$${total}</span></p>
-        </div>
-        <div class="delete">
-            <img src="/images/icon-delete.svg" alt="#" class="deleteBtn">
+            <p>$${cartItems.price} X ${cartItems.count} <span class="total">$${cartItems.total}</span></p>
         </div>
     </div>
     `;
-
-    // const existingCartItem = ({prevCartItems, nextCartItem}) =>{
-    //   return prevCartItems.find((cartItem)=>cartItem.documentID === nextCartItem.documentID)
-    // }
-
-    let number_of_items_in_cart = document.querySelector('.number_of_items_in_cart')
-    number_of_items_in_cart.value++
-
-    let deleteBtns = document.querySelectorAll(".deleteBtn");
-    deleteBtns.forEach((deleteBtn) => {
-      deleteBtn.addEventListener("click", (e) => {
-        deleteBtn.parentElement.parentElement.remove();
-        number_of_items_in_cart.value--
-      });
-    });
+    number_of_items_in_cart.value++;
 
     data.push(cartItems);
     localStorage.setItem("CART", JSON.stringify(data));
+
+    let clear = document.querySelector('.clear')
+
+    if (localStorage.getItem("CART")!== null) {
+      clear.classList.remove("displaydisabled")
+    }else{
+      clear.classList.add("displaydisabled")
+    }
   });
 };
+
+const clearItem = () =>{
+  if (localStorage.getItem("CART")== null) {
+    return;
+  }else{
+    localStorage.clear("CART");
+    window.location.reload()
+  }
+}
+
+let clear = document.querySelector('.clear')
+
+if (localStorage.getItem("CART")!== null) {
+  clear.classList.remove("displaydisabled")
+}else{
+  clear.classList.add("displaydisabled")
+}
+
+const updateCart = () =>{
+  const i = JSON.parse(localStorage.getItem("CART"));
+  number_of_items_in_cart.value = i.length;
+  i.map((item, idx) => {
+    let total = 0;   
+    return (cartItem.innerHTML += `
+    <div class="cartItemSub">
+        <div class="cartItemImage">
+            <img src="${item.imgSrc}" alt="#" class="cartItemImage">
+        </div>
+        <div class="cartItemText">
+            <p>${item.name}</p>
+            <p>$${item.price} X ${item.count} <span class="total">$${item.total}</span></p>
+        </div>
+    </div>
+    `);
+    
+  });
+}
+window.addEventListener("load", () => {
+  updateCart()
+});
 
 // THUMBNAILS
 function thumbChange(num) {
@@ -244,12 +274,12 @@ function thumbChange(num) {
   document.getElementById("displayImg").src = thumb;
 }
 
-let basket = document.querySelector('.basket');
-basket.addEventListener('click', ()=>{
-  let addedCartItem = document.querySelector('.addedCartItem');
-  if (addedCartItem.classList.contains('displayNone')) {
-    addedCartItem.classList.remove('displayNone')
-  }else{
-    addedCartItem.classList.add('displayNone')
+let basket = document.querySelector(".basket");
+basket.addEventListener("click", () => {
+  let addedCartItem = document.querySelector(".addedCartItem");
+  if (addedCartItem.classList.contains("displayNone")) {
+    addedCartItem.classList.remove("displayNone");
+  } else {
+    addedCartItem.classList.add("displayNone");
   }
-})
+});

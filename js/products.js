@@ -6,7 +6,9 @@ const products = [
         price: 125,
         instock: 10,
         description: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Exercitationem ducimus nemo, molestias eaque mollitia earum blanditiis modi, ipsa magni corrupti, adipisci sapiente cupiditate rem nobis quis laborum? Ipsam saepe ex magnam mollitia rem ipsa officia quos.",
-        imgSrc: "/images/image-product-1.jpg"
+        imgSrc: "/images/image-product-1.jpg",
+        count: 1,
+        total: 0
     },
     {
         id: 1,
@@ -14,7 +16,9 @@ const products = [
         price: 150,
         instock: 10,
         description: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Exercitationem ducimus nemo, molestias eaque mollitia earum blanditiis modi, ipsa magni corrupti, adipisci sapiente cupiditate rem nobis quis laborum? Ipsam saepe ex magnam mollitia rem ipsa officia quos.",
-        imgSrc: "/images/image-product-2.jpg"
+        imgSrc: "/images/image-product-2.jpg",
+        count: 1,
+        total: 0
     },
     {
         id: 2,
@@ -22,7 +26,9 @@ const products = [
         price: 100,
         instock: 10,
         description: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Exercitationem ducimus nemo, molestias eaque mollitia earum blanditiis modi, ipsa magni corrupti, adipisci sapiente cupiditate rem nobis quis laborum? Ipsam saepe ex magnam mollitia rem ipsa officia quos.",
-        imgSrc: "/images/image-product-3.jpg"
+        imgSrc: "/images/image-product-3.jpg",
+        count: 1,
+        total: 0
     },
     {
         id: 3,
@@ -30,6 +36,8 @@ const products = [
         price: 120,
         instock: 10,
         description: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Exercitationem ducimus nemo, molestias eaque mollitia earum blanditiis modi, ipsa magni corrupti, adipisci sapiente cupiditate rem nobis quis laborum? Ipsam saepe ex magnam mollitia rem ipsa officia quos.",
-        imgSrc: "/images/image-product-4.jpg"
+        imgSrc: "/images/image-product-4.jpg",
+        count: 1,
+        total: 0
     }
 ]
